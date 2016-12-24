@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Remarkable from 'remarkable';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {value: 'Type some *markdown* here!'};
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h3>Input</h3>
+        <textarea
+          onChange={this.handleChange}
+          ref="textarea"
+          defaultValue={this.state.value} />
+        <h3>Output</h3>
+        <div
+          className="content"
+          dangerouslySetInnerHTML={this.getRawMarkup()}
+        />
       </div>
     );
+  }
+
+  handleChange() {
+    this.setState({value: this.refs.textarea.value});
+  }
+
+  getRawMarkup() {
+    var md = new Remarkable();
+    return { __html: md.render(this.state.value) };
   }
 }
 
