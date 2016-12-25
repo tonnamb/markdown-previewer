@@ -11,7 +11,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <h3>Input</h3>
         <textarea
           onChange={this.handleChange}
@@ -19,7 +19,6 @@ class App extends Component {
           defaultValue={this.state.value} />
         <h3>Output</h3>
         <div
-          className="content"
           dangerouslySetInnerHTML={this.getRawMarkup()}
         />
       </div>
