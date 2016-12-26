@@ -1,0 +1,27 @@
+$font-stack: Verdana, Helvetica, Arial, sans-serif;
+
+.App {
+	padding: 20px;
+}
+
+.App textarea {
+	width: 500px;
+    height: 600px;
+    font-family: $font-stack;
+    font-size: 14px;
+}
+
+.App-output {
+	font-family: $font-stack;
+	font-size: 14px;
+	vertical-align: top;
+	padding-left: 20px;
+}
+
+$dark-red: #cc0000;
+$light-yel: #ffffcc;
+
+.App-output code {
+	color: $dark-red;
+	background-color: $light-yel;
+}

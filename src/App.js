@@ -6,27 +6,68 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = {value: 'Type some *markdown* here!'};
+    this.getRawMarkup = this.getRawMarkup.bind(this);
+    const exampleText = `Heading
+=======
+
+Sub-heading
+-----------
+
+### Another deeper heading
+
+Paragraphs are separated
+by a blank line.
+
+Leave 2 spaces at the end of a line to do a  
+line break
+
+Text attributes *italic*, **bold**, 
+\`monospace\`, ~~strikethrough~~ .
+
+Shopping list:
+
+  * apples
+  * oranges
+  * pears
+
+Numbered list:
+
+  1. apples
+  2. oranges
+  3. pears
+
+The rain---not the reign---in
+Spain.
+
+ *[Herman Fassett](https://freecodecamp.com/hermanfassett)*
+    `;
+
+    this.state = {value: exampleText};
   }
 
   render() {
     return (
-      <div>
-        <h3>Input</h3>
+      <div className="App">
+      	<table>
+      	<tr>
+      	<td>
         <textarea
           onChange={this.handleChange}
-          ref="textarea"
-          defaultValue={this.state.value} />
-        <h3>Output</h3>
+          value={this.state.value} />
+        </td>
+        <td className="App-output">
         <div
           dangerouslySetInnerHTML={this.getRawMarkup()}
         />
+        </td>
+        </tr>
+        </table>
       </div>
     );
   }
 
-  handleChange() {
-    this.setState({value: this.refs.textarea.value});
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   getRawMarkup() {
